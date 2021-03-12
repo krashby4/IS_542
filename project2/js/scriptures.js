@@ -11,15 +11,14 @@
     browser, long, for
  */
 
-/*global
-    console, map
- */
 
 /*property
-    animation, Animation, books, classKey, color, content, DROP, every, fontFamily, fontWeight, forEach, fullName, getElementById, gridName, hash,
-    href, icon, id, includes, init, innerHTML, label, labelOrigin, lat, LatLngBounds, length, lng, log, map, maps, Marker, maxBookId, minBookId, numChapters,
-    onHashChanged, onerror, onload, open, parse, Point, position, push, response, send, slice,
-    split, status, text, title, url
+    anchor, animate, books, changeHash, classKey, clearMarkers, content,
+    crossfade, css, div, duration, element, forEach, freeze, fullName,
+    getElementById, getElementsByClassName, gridName, hash, href, id, init,
+    innerHTML, left, length, link, location, log, numChapters, onHashChanged,
+    opacity, parentBookId, requestChapter, setupMarkers, showLocation, slice,
+    split, tocName, transition, width
 */
 
 /*--------------------------------------------------------------
@@ -31,6 +30,7 @@ import Html from "./HtmlHelper.js";
 import injectBreadcrumbs from "./Breadcrumbs.js";
 import MapHelper from "./MapHelper.js";
 import {volumes} from "./MapScripApi.js";
+import Animation from "./Animation.js";
 
 /*--------------------------------------------------------------
  *                      CONSTANTS
@@ -133,33 +133,6 @@ const getCurrentHash = function () {
     return currentHash;
 };
 
-
-
-
-
-const transition = function (volume, book, chapter, nextprevious) {
-    animateType = nextprevious;
-    changeHash(volume, book, chapter);
-};
-
-const crossfade = function () {
-    $(`#${scripDivOffScreen}`).css({"left": "0px", "opacity": 0})
-    $(`#${scripDivOffScreen}`).animate({"opacity": 1, "z-index": 2}, {"duration": ANIMATE_TIME})
-    $(`#${scripDivOnScreen}`).animate({"opacity": 0, "z-index": 1}, {"duration": ANIMATE_TIME})
-    switchVisibleDivTracker();
-};
-
-
-const switchVisibleDivTracker = function () {
-    if (scripDivOnScreen === DIV_SCRIP1) {
-        scripDivOnScreen = DIV_SCRIP2;
-        scripDivOffScreen = DIV_SCRIP1;
-    } else {
-        scripDivOnScreen = DIV_SCRIP1;
-        scripDivOffScreen = DIV_SCRIP2;
-    }
-};
-
 // This was also a product of Riley Hales and I working together
 const getScripturesCallback = function (chapterHtml) {
 
@@ -178,14 +151,14 @@ const getScripturesCallback = function (chapterHtml) {
         $(`#${scripDivOffScreen}`).css({"left": `${width}px`, "opacity": 1});
         $(`#${scripDivOnScreen}`).animate({"left": `-${width}px`}, {"duration": ANIMATE_TIME});
         $(`#${scripDivOffScreen}`).animate({"left": "0px"}, {"duration": ANIMATE_TIME});
-        switchVisibleDivTracker();
+        Animation.switchVisibleDivTracker();
     } else if (animateType === "Previous") {
         $(`#${scripDivOffScreen}`).css({"left": `-${width}px`, "opacity": 1});
         $(`#${scripDivOnScreen}`).animate({"left": `${width}px`}, {"duration": ANIMATE_TIME});
         $(`#${scripDivOffScreen}`).animate({"left": "0px"}, {"duration": ANIMATE_TIME});
-        switchVisibleDivTracker();
+        Animation.switchVisibleDivTracker();
     } else if (animateType === "crossfade") {
-        crossfade();
+        Animation.crossfade();
     }
 
     animateType = "crossfade";
@@ -201,14 +174,12 @@ const getScripturesCallback = function (chapterHtml) {
 };
 
 const getScripturesFailure = function (error) {
-    console.log(error)
+    console.log(error);
     document.getElementById(DIV_SCRIPTURES).innerHTML = "Unable to retrieve chapter contents.";
     injectBreadcrumbs();
 };
 
-const changeHash = function (volumeId, bookId, chapterId) {
-    window.location.hash = `#${(volumeId === undefined ? "" : volumeId)}${(bookId === undefined ? "" : ":" + bookId)}${(chapterId === undefined ? "" : ":" + chapterId)}`;
-};
+
 
 // This new htmlHashLink is also a result of Riley Hales and I collaborating
 const htmlNextButton = function (hashVol, hashBook, hashChap, nextprevious) {
@@ -227,7 +198,7 @@ const navigateBook = function (bookId) {
             content: chaptersGrid(book)
         });
         injectBreadcrumbs(volumeForId(book.parentBookId), book);
-        crossfade();
+        Animation.crossfade();
     }
 };
 
@@ -243,7 +214,7 @@ const navigateHome = function (volumeId) {
         content: volumesGridContent(volumeId)
     });
     injectBreadcrumbs(volumeForId(volumeId));
-    crossfade();
+    Animation.crossfade();
 };
 
 const nextChapter = function (bookId, chapter) {
@@ -382,8 +353,8 @@ const Scriptures = {
     init: Api.init,
     onHashChanged,
     showLocation: MapHelper.showLocation,
-    changeHash,
-    transition
+    changeHash: Animation.changeHash,
+    transition: Animation.transition
 };
 
 export default Object.freeze(Scriptures);
