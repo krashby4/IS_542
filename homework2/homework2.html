@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IS 542 - Homework 2</title>
+    <script>
+        function fibSeq() {
+            var userInput = document.getElementById("fibInput").value;
+            var fib1 = 0;
+            var fib2 = 1;
+            var fib_list = [0, 1];
+            var sum;
+            for (i = 0; i < userInput; i+=1) {
+                sum = fib1 + fib2;
+                fib_list.push(sum);
+                fib1 = fib2;
+                fib2 = sum;
+            }
+            document.getElementById("fibResult").innerHTML = fib_list.toString();
+        };
+
+        function fact() {
+            var userInput = document.getElementById("factInput").value;
+            var fac1 = 1;
+            for (i = 1; i <= userInput; i+=1) {
+                fac_result = fac1 * i;
+                fac1 = fac_result;
+            }
+            document.getElementById("facResult").innerHTML = fac1;
+        };
+
+        function sumIntegers() {
+            var userInput1 = document.getElementById("sumIntInput1").value;
+            var userInput2 = document.getElementById("sumIntInput2").value;
+            var sumInt1 = parseInt(userInput1);
+            for (i = sumInt1 + 1; i <= userInput2; i+=1) {
+                sumIntResult = sumInt1 + i;
+                sumInt1 = sumIntResult;
+            }
+            document.getElementById("sumIntResult").innerHTML = sumInt1;
+        };
+
+        function numCoins() {
+            var userInput = document.getElementById("findCoinInput").value;
+            var numQuarters = 0;
+            var numDimes = 0;
+            var numNickels = 0;
+            var numPennies = 0;
+            while (userInput > 0){
+                if (userInput >= 25) {
+                    userInput = userInput - 25;
+                    numQuarters+=1;
+                } else if (userInput >= 10) {
+                    userInput = userInput - 10;
+                    numDimes+=1;
+                } else if (userInput >= 5) {
+                    userInput = userInput - 5;
+                    numNickels+=1;
+                } else if (userInput <= 5) {
+                    userInput = userInput - 1;
+                    numPennies+=1;
+                }
+            }
+            if (numQuarters > 1) {
+                numQuartersString = numQuarters + " quarters, ";
+            } else if (numQuarters == 1) {
+                numQuartersString = numQuarters + " quarter, ";
+            } else if (numQuarters == 0) {
+                numQuartersString = "";
+            }
+
+            if (numDimes > 1) {
+                numDimesString = numDimes + " dimes, ";
+            } else if (numDimes == 1) {
+                numDimesString = numDimes + " dime, ";
+            } else if (numDimes == 0) {
+                numDimesString = "";
+            }
+
+            if (numNickels > 1) {
+                numNickelsString = numNickels + " nickels, ";
+            } else if (numNickels == 1) {
+                numNickelsString = numNickels + " nickel, ";
+            } else if (numNickels == 0) {
+                numNickelsString = "";
+            }
+
+            if (numPennies > 1) {
+                numPenniesString = numPennies + " pennies";
+            } else if (numPennies == 1) {
+                numPenniesString = numPennies + " penny";
+            } else if (numPennies == 0) {
+                numPenniesString = "";
+            }
+
+            finalString = numQuartersString + numDimesString + numNickelsString + numPenniesString;
+            document.getElementById("findCoinResult").innerHTML = finalString;
+        };
+    </script>
+</head>
+<body>
+    <h1>Fibonacci Sequence</h1>
+    <input type="text" id="fibInput" value="4">
+    <button type="button" id="fibButton" onclick="fibSeq()">Run Fibonacci sequence</button>
+    <p id="fibResult">Fibonacci sequence will show here</p>
+
+    <h1>Factorial</h1>
+    <input type="text" id="factInput" value="4">
+    <button type="button" id="fibButton" onclick="fact()">Compute factorial</button>
+    <p id="facResult">Factorial answer will show here</p>
+
+    <h1>Sum All Integers</h1>
+    <input type="text" id="sumIntInput1" value="4">
+    <input type="text" id="sumIntInput2" value="4">
+    <button type="button" id="sumIntButton" onclick="sumIntegers()">Compute sum of integers</button>
+    <p id="sumIntResult">Factorial answer will show here</p>
+
+    <h1>Find Number of Coins</h1>
+    <input type="text" id="findCoinInput" value="4">
+    <button type="button" id="findCoinButton" onclick="numCoins()">Find number of coins</button>
+    <p id="findCoinResult">Number of coins will show here</p>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>The Scriptures, Mapped</title>
+    <meta name="description" content="The Standard Works, Mapped">
+    <meta name="author" content="Kyler Ashby, with tutorials from Stephen Liddle">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+
+    <link rel="stylesheet" href="css/styles.css">
+
+    <meta name="theme-color" content="#fafafa">
+    <script defer 
+        src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+    <div id="header">
+        <div id="crumbs"></div>
+        <div id="centerhead">
+            <div class="title">The Scriptures, Mapped</div>
+            <div id="subtitle">By Kyler Ashby, with help from Dr. Liddle</div>
+        </div>
+    </div>
+    <div id="content">
+        <div id="scriptures">
+            <div id="scrip1"></div>
+            <div id="scrip2"></div>
+        </div>
+        <div id="map"></div>
+    </div>
+
+    <script src="js/scriptures.js"></script>
+
+    <script type="text/javascript">
+        let map;
+        let showLocation;
+        let Scriptures;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 31.771959, lng: 35.217018 },
+                zoom: 8,
+            });
+        }
+    </script>
+
+    <script type="module">
+        import("./js/scriptures.js").then(module => {
+            Scriptures = module.default;
+            function ready(readyListener) {
+                if (document.readyState !== "loading") {
+                    readyListener();
+                } else {
+                    document.addEventListener("DOMContentLoaded", readyListener);
+                }
+            }
+
+            ready(function () {
+                module.default.init(() => { module.default.onHashChanged(); });
+                showLocation = module.default.showLocation;
+                window.addEventListener("hashchange", module.default.onHashChanged);
+            });
+        });
+    </script>
+
+</body>
+</html>

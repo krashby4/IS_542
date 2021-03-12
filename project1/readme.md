@@ -1,0 +1,6 @@
+# Project 1: Things I learned/accomplished
+- For one, I learned that the hash is a very useful tool to have when working with many, many pages of HTML. It definitely made navigating/displaying certain HTML pages much simpler.
+- Learning how to work with the Google Map API at first was a bit confusing but I think I now have got the hang of it. I mostly got hung up on trying to customize the marker and the labels. I had to do a bit of digging to get that working. I feared displaying all the markers for a chapter was going to be more difficult but luckily I found some code online that helped me walk through how it should be done (I documented the URL I found the code in my JavaScript).
+- Getting the next/previous buttons was no walk in the park either. Thanks in large part to my fellow classmate Riley Hales, we were able to get that going and create others methods by which to navigate to the volumes/books/chapters.
+- I think in general I certainly learned how JavaScript should/can be structured (i.e. keeping things private as much as possible, calling certain functions in the correct places).
+- Also, I learned that using the developer tools can help hone in on where the code is bugging out or just plain broken. This certainly saved me a lot of time and my sanity.
