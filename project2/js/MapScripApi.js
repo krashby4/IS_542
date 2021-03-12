@@ -16,8 +16,8 @@
  */
 
 /*property
-    books, catch, forEach, freeze, init, json, log, maxBookId, message,
-    minBookId, ok, push, requestChapter, text, then
+    books, catch, forEach, freeze, init, json, length, log, maxBookId, message,
+    minBookId, ok, push, requestChapter, text, then, volumeForId
 */
 
 /*--------------------------------------------------------------
@@ -117,7 +117,7 @@ const requestChapter = function (bookId, chapter, success, failure) {
 };
 
 const volumeForId = function (volumeId) {
-    if (volumeId !== undefined && volumeId > 0 && volumeId < volumes.length) {
+    if (volumeId !== undefined && volumeId > 0 && volumeId <= volumes.length) {
         return volumes[volumeId - 1];
     }
 };

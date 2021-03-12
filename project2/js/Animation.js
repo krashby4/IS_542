@@ -17,8 +17,9 @@
 
 /*property
     animate, changeHash, crossfade, css, duration, freeze, hash, left, location,
-    opacity, transition
+    opacity, switchVisibleDivTracker, transition
 */
+
 
 /*--------------------------------------------------------------
  *                      CONSTANTS
@@ -30,7 +31,7 @@ const DIV_SCRIP2 = "scrip2";
 /*--------------------------------------------------------------
  *                      PRIVATE VARIABLES
  */
-let animateType = "crossfade";
+let animateType;
 let scripDivOffScreen = DIV_SCRIP2;
 let scripDivOnScreen = DIV_SCRIP1;
 
@@ -62,7 +63,6 @@ const switchVisibleDivTracker = function () {
     }
 };
 
-
 /*--------------------------------------------------------------
  *                      PUBLIC API
  */
@@ -73,4 +73,5 @@ const Animation = {
     switchVisibleDivTracker
 };
 
+export {animateType};
 export default Object.freeze(Animation);
