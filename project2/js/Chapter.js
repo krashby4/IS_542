@@ -65,7 +65,7 @@ const getCurrentHash = function () {
 };
 
 const getScripturesCallback = function (chapterHtml) {
-
+//Practically all animation code is thanks to Riley Hales. He definitely saved my bacon on this one
     let currentHash = getCurrentHash();
     let prevHash = previousChapter(Number(currentHash[1]), Number(currentHash[2]));
     let previousButton = (prevHash === undefined ? "" : htmlNextButton(prevHash[0], prevHash[1], prevHash[2], "Previous"));

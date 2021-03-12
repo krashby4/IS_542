@@ -38,6 +38,8 @@ let scripDivOnScreen = DIV_SCRIP1;
 /*--------------------------------------------------------------
  *                      PRIVATE METHODS
  */
+
+//Practically all animation code is thanks to Riley Hales. He definitely saved my bacon on this one
 const changeHash = function (volumeId, bookId, chapterId) {
     window.location.hash = `#${(volumeId === undefined ? "" : volumeId)}${(bookId === undefined ? "" : ":" + bookId)}${(chapterId === undefined ? "" : ":" + chapterId)}`;
 };
