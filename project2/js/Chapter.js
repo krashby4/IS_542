@@ -28,7 +28,7 @@
  *                      IMPORTS
  */
 import {books} from "./MapScripApi.js";
-import {animateType} from "./Animation.js";
+import {animateType, scripDivOffScreen, scripDivOnScreen, animateTime} from "./Animation.js";
 import Animation from "./Animation.js";
 import MapScripApi from "./MapScripApi.js";
 import injectBreadcrumbs from "./Breadcrumbs.js";
@@ -36,18 +36,14 @@ import MapHelper from "./MapHelper.js";
 /*--------------------------------------------------------------
  *                      CONSTANTS
  */
-const ANIMATE_TIME = 500;
 const DIV_SCRIPTURES = "scriptures";
-const DIV_SCRIP1 = "scrip1";
-const DIV_SCRIP2 = "scrip2";
+
 
 /*--------------------------------------------------------------
  *                      PRIVATE VARIABLES
  */
 let requestedBookId;
 let requestedChapter;
-let scripDivOnScreen = DIV_SCRIP1;
-let scripDivOffScreen = DIV_SCRIP2;
 
 /*--------------------------------------------------------------
  *                      PRIVATE METHODS
@@ -79,13 +75,13 @@ const getScripturesCallback = function (chapterHtml) {
     let width = $("#scriptures").width();
     if (animateType === "Next") {
         $(`#${scripDivOffScreen}`).css({"left": `${width}px`, "opacity": 1});
-        $(`#${scripDivOnScreen}`).animate({"left": `-${width}px`}, {"duration": ANIMATE_TIME});
-        $(`#${scripDivOffScreen}`).animate({"left": "0px"}, {"duration": ANIMATE_TIME});
+        $(`#${scripDivOnScreen}`).animate({"left": `-${width}px`}, {"duration": animateTime});
+        $(`#${scripDivOffScreen}`).animate({"left": "0px"}, {"duration": animateTime});
         Animation.switchVisibleDivTracker();
     } else if (animateType === "Previous") {
         $(`#${scripDivOffScreen}`).css({"left": `-${width}px`, "opacity": 1});
-        $(`#${scripDivOnScreen}`).animate({"left": `${width}px`}, {"duration": ANIMATE_TIME});
-        $(`#${scripDivOffScreen}`).animate({"left": "0px"}, {"duration": ANIMATE_TIME});
+        $(`#${scripDivOnScreen}`).animate({"left": `${width}px`}, {"duration": animateTime});
+        $(`#${scripDivOffScreen}`).animate({"left": "0px"}, {"duration": animateTime});
         Animation.switchVisibleDivTracker();
     } else if (animateType === "crossfade") {
         Animation.crossfade();

@@ -34,6 +34,7 @@ const DIV_SCRIP2 = "scrip2";
 let animateType;
 let scripDivOffScreen = DIV_SCRIP2;
 let scripDivOnScreen = DIV_SCRIP1;
+let animateTime = ANIMATE_TIME;
 
 /*--------------------------------------------------------------
  *                      PRIVATE METHODS
@@ -51,8 +52,8 @@ const transition = function (volume, book, chapter, nextprevious) {
 
 const crossfade = function () {
     $(`#${scripDivOffScreen}`).css({"left": "0px", "opacity": 0});
-    $(`#${scripDivOffScreen}`).animate({"opacity": 1, "z-index": 2}, {"duration": ANIMATE_TIME});
-    $(`#${scripDivOnScreen}`).animate({"opacity": 0, "z-index": 1}, {"duration": ANIMATE_TIME});
+    $(`#${scripDivOffScreen}`).animate({"opacity": 1, "z-index": 2}, {"duration": animateTime});
+    $(`#${scripDivOnScreen}`).animate({"opacity": 0, "z-index": 1}, {"duration": animateTime});
 };
 
 const switchVisibleDivTracker = function () {
@@ -75,5 +76,5 @@ const Animation = {
     switchVisibleDivTracker
 };
 
-export {animateType};
+export {animateType, scripDivOffScreen, scripDivOnScreen, animateTime};
 export default Object.freeze(Animation);
