@@ -23,7 +23,7 @@ img {
   top: 0;
   left: 0;
   right: 0;
-  background-color: #3f2000;
+  background-color: #130f4e;
   color: white;
   height: 56px;
   display: flex;
@@ -79,7 +79,7 @@ div.subtitle {
 #scriptures {
   min-width: 220px;
   max-width: 440px;
-  flex: 1 1 30%;
+  flex: 1 1 40%;
   height: 100%;
   min-height: 100%;
   overflow-x: hidden;
@@ -97,12 +97,14 @@ div.subtitle {
 }
 
 #map {
-  flex: 1 1 70%;
+  flex: 1 1 60%;
 }
 
 .volume {
   padding: .5em;
   font-size: 12pt;
+  text-align: center;
+  text-decoration: underline;
 }
 
 div.books {
@@ -121,7 +123,27 @@ div.books a {
   padding-left: .5em;
   padding-right: .5em;
   background-color: #fff;
-  color: #222;
+  color: rgb(19, 19, 19);
+  border-color: #222;
+  box-shadow: 0 4px #999;
+}
+
+div.books a:hover {
+  flex: 0 0 7em;
+  font-weight: normal;
+  margin: .4em;
+  padding-left: .5em;
+  padding-right: .5em;
+  background-color: #fff;
+  color: rgb(19, 19, 19);
+  border-color: #222;
+  background-color: rgb(121, 121, 121);
+}
+
+div.books a:active {
+  background-color: rgb(121, 121, 121);
+  box-shadow: 0 1px #666;
+  transform: translateY(4px);
 }
 
 div.books a.chapter {
@@ -276,4 +298,45 @@ li.match {
   position: absolute;
   height: 100%;
   width: 100%;
+}
+
+
+@media (max-width: 600px) {
+    #crumbs{
+      text-align: center;
+    }
+    #content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    #header{
+      justify-content: center;
+    }
+
+    #centerhead {
+        display: none;
+    }
+
+    #scriptures {
+        flex: 100%;
+        width: 100%;
+        min-width: 100%;
+        display: block;
+        overflow-x: hidden;
+        overflow-y: auto;
+        border-bottom: 1px solid #aaaaaa;
+        order: 2;
+    }
+
+    #map {
+        height: 40%;
+        min-height: 40%;
+        max-height: 40%;
+        flex: 100%; 
+        width: 100%;
+        min-width: 100%;
+        display: block;
+        order: 1;
+    }
 }

@@ -27,7 +27,7 @@ import Navigation from "./Navigation.js";
 /*--------------------------------------------------------------
  *                      PUBLIC API
  */
-const Scriptures = {
+const ScripApi = {
     init: MapScripApi.init,
     onHashChanged: Navigation.onHashChanged,
     showLocation: MapHelper.showLocation,
@@ -35,4 +35,4 @@ const Scriptures = {
     transition: Animation.transition
 };
 
-export default Object.freeze(Scriptures);
+export default Object.freeze(ScripApi);

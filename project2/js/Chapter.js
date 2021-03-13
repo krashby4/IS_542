@@ -87,7 +87,6 @@ const getScripturesCallback = function (chapterHtml) {
         Animation.crossfade();
     }
 
-
     let book = books[requestedBookId];
     if (book !== undefined) {
         injectBreadcrumbs(MapScripApi.volumeForId(book.parentBookId), book, requestedChapter);

@@ -32,8 +32,8 @@ const DIV_SCRIP2 = "scrip2";
  *                      PRIVATE VARIABLES
  */
 let animateType;
-let scripDivOffScreen = DIV_SCRIP2;
 let scripDivOnScreen = DIV_SCRIP1;
+let scripDivOffScreen = DIV_SCRIP2;
 let animateTime = ANIMATE_TIME;
 
 /*--------------------------------------------------------------
@@ -60,7 +60,7 @@ const switchVisibleDivTracker = function () {
     if (scripDivOnScreen === DIV_SCRIP1) {
         scripDivOnScreen = DIV_SCRIP2;
         scripDivOffScreen = DIV_SCRIP1;
-    } else {
+    } else if (scripDivOnScreen === DIV_SCRIP2) {
         scripDivOnScreen = DIV_SCRIP1;
         scripDivOffScreen = DIV_SCRIP2;
     }
